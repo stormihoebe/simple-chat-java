@@ -1,0 +1,7 @@
+<h1>All People</h1>
+<h3>select your name</h3>
+
+#foreach( $person in $persons)
+  <a href="/persons/$person.getId()"><h4>$person.getName()</h4></a>
+
+#end

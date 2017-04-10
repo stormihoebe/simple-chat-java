@@ -1,0 +1,35 @@
+<h1>$person.getName()</h1>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Messages By You</h3>
+        #foreach( $message in $person.allMessages())
+          <h4>$message.getMessageText()</h4>
+        #end
+        <div>
+          <form action="/message" method="post">
+            <input id="person_id" name="person_id" type="hidden" value="$person.getId()">
+              <div class="form-group">
+                <label for = "messageText">Message Text:</label>
+                <input type="text" name="messageText" class="form-control" required>
+                <label for="">WARNING: Page automatically refreshes every 10 seconds, type your message quickly</label>
+              </div>
+            <button type="submit" name="button">Post Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Messages By Others </h3>
+          #foreach( $allPerson in $allPersons)
+            #if (!$allPerson.equals($person))
+              #foreach($message in $allPerson.allMessages())
+                <h4>$allPerson.getName() : $message.getMessageText()</h4>
+              #end
+            #end
+          #end
+      </div>
+    </div>
+  </div>
+</div>
